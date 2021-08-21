@@ -21,7 +21,7 @@ import mx.uacm.edu.incidencias.service.impl.PersonaService;
 
 @Slf4j
 @RestController
-@RequestMapping ("/api/persona/")
+@RequestMapping ("/api/persona")
 public class PersonaREST {
 	
 	@Autowired
@@ -30,7 +30,7 @@ public class PersonaREST {
 	@PostMapping
 	private ResponseEntity<Persona> guardar (@RequestBody Persona persona){
 
-        log.info("GET: /producto " + persona.toString());
+        log.info("POST: /persona " + persona.toString());
 		Persona temporal = personaService.create(persona);
 		
 		try {
@@ -54,6 +54,7 @@ public class PersonaREST {
 	
 	@GetMapping (value = "{id}")
 	private ResponseEntity<Optional<Persona>> listarPersonasPorID (@PathVariable ("id") Long id){
+		log.info("GET: /persona/ " + id);
 		return ResponseEntity.ok(personaService.findById(id));
 	}
 	
