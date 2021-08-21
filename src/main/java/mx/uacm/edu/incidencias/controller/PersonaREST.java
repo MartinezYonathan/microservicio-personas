@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.slf4j.Slf4j;
 import mx.uacm.edu.incidencias.entity.Persona;
 import mx.uacm.edu.incidencias.service.impl.PersonaService;
 
+@Slf4j
 @RestController
 @RequestMapping ("/api/persona/")
 public class PersonaREST {
@@ -27,6 +29,8 @@ public class PersonaREST {
 	
 	@PostMapping
 	private ResponseEntity<Persona> guardar (@RequestBody Persona persona){
+
+        log.info("GET: /producto " + persona.toString());
 		Persona temporal = personaService.create(persona);
 		
 		try {
